@@ -7,8 +7,8 @@ namespace FetchCodingChallenge.StepDefinitions
     [Binding]
     public class FindFakeGoldBarStepDefinitions
     {
-        private IWebDriver _driver;
-        private WebDriverWait _wait;
+        private IWebDriver? _driver;
+        private WebDriverWait? _wait;
 
         [Given(@"I have navigated to the gold bar weighing website")]
         public void GivenIHaveNavigatedToTheGoldBarWeighingWebsite()
@@ -21,6 +21,10 @@ namespace FetchCodingChallenge.StepDefinitions
         [When(@"I find the fake gold bar")]
         public void WhenIFindTheFakeGoldBar()
         {
+            if (_driver == null || _wait == null)
+            {
+                throw new NullReferenceException("Driver or Wait is null");
+            }
             // Step 1: Weigh group 1 (0, 1, 2) against group 2 (3, 4, 5)
             int[] firstGroup = { 0, 1, 2 };
             int[] secondGroup = { 3, 4, 5 };
@@ -41,6 +45,10 @@ namespace FetchCodingChallenge.StepDefinitions
         [When(@"I click on the correct gold bar button")]
         public void WhenIClickOnTheCorrectGoldBarButton()
         {
+            if (_driver == null)
+            {
+                throw new NullReferenceException("Driver is null");
+            }
             int fakeBarIndex = (int)ScenarioContext.Current["FakeBarIndex"];
             Console.WriteLine("Fake Bar Index: " + fakeBarIndex);
             _driver.FindElement(By.XPath($"//button[@id='coin_{fakeBarIndex}']")).Click();
@@ -49,6 +57,10 @@ namespace FetchCodingChallenge.StepDefinitions
         [Then(@"I should see the message ""(.*)""")]
         public void ThenIShouldSeeTheMessage(string expectedMessage)
         {
+            if (_driver == null)
+            {
+                throw new NullReferenceException("Driver is null");
+            }
             IAlert alert = _driver.SwitchTo().Alert();
             string alertText = alert.Text;
             alert.Accept();
@@ -66,10 +78,14 @@ namespace FetchCodingChallenge.StepDefinitions
         [AfterScenario]
         public void CleanUp()
         {
-            _driver.Quit();
+            _driver?.Quit();
         }
         private int[] WeighAndDetermineGroup(int[] leftGroup, int[] rightGroup)
         {
+            if (_driver == null)
+            {
+                throw new NullReferenceException("Driver is null");
+            }
             // Use the combined method to enter values into the left and right bowls
             EnterValuesIntoBowl(leftGroup, "left");
             EnterValuesIntoBowl(rightGroup, "right");
@@ -91,16 +107,24 @@ namespace FetchCodingChallenge.StepDefinitions
         {
             if (bars == null || bars.Length == 0)
             {
-                throw new ArgumentException("Bars array is null or empty");
+                throw new NullReferenceException("Bars array is null or empty");
             }
 
             for (int i = 0; i < bars.Length; i++)
             {
+                if (_driver == null)
+                {
+                    throw new NullReferenceException("Driver is null");
+                }
                 _driver.FindElement(By.XPath($"//input[@id='{side}_{i}']")).SendKeys(bars[i].ToString());
             }
         }
         private int FindFakeBarWithinGroup(int[] group)
         {
+            if (_driver == null)
+            {
+                throw new NullReferenceException("Driver is null");
+            }
             EnterValuesIntoBowl(new int[] { group[0] }, "left");
             EnterValuesIntoBowl(new int[] { group[1] }, "right");
             _driver.FindElement(By.XPath("//button[@id='weigh']")).Click();
@@ -117,6 +141,10 @@ namespace FetchCodingChallenge.StepDefinitions
 
         private string GetWeighingResultText(int resultIndex)
         {
+            if (_wait == null)
+            {
+                throw new NullReferenceException("Driver is null");
+            }
             return _wait.Until(driver => driver.FindElement(By.XPath($"//ol/li[{resultIndex}]"))).Text;
         }
     }
