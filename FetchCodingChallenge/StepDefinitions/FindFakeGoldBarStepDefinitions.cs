@@ -27,7 +27,9 @@ namespace FetchCodingChallenge.StepDefinitions
             int[] suspectedGroup = WeighAndDetermineGroup(firstGroup, secondGroup);
 
             // Step 2: Reset the scale
-            ResetScale();
+            IWebElement resetButton = _driver.FindElement(By.XPath("//div/button[@id='reset' and text()='Reset']"));
+            _wait.Until(driver => resetButton.Enabled);
+            resetButton.Click();
 
             // Step 3: Weigh two bars from the suspected group
             int fakeBarIndex = FindFakeBarWithinGroup(suspectedGroup);
@@ -70,7 +72,7 @@ namespace FetchCodingChallenge.StepDefinitions
         {
             EnterValuesIntoLeftBowl(leftGroup);
             EnterValuesIntoRightBowl(rightGroup);
-            ClickWeighButton();
+            _driver.FindElement(By.XPath("//button[@id='weigh']")).Click();
 
             string weighingResultText = GetWeighingResultText(1);
 
@@ -100,7 +102,7 @@ namespace FetchCodingChallenge.StepDefinitions
         {
             EnterValuesIntoLeftBowl(new int[] { group[0] });
             EnterValuesIntoRightBowl(new int[] { group[1] });
-            ClickWeighButton();
+            _driver.FindElement(By.XPath("//button[@id='weigh']")).Click();
 
             string weighingResultText = GetWeighingResultText(2);
 
@@ -112,22 +114,9 @@ namespace FetchCodingChallenge.StepDefinitions
                 return group[2]; // Both sides are equal, so the fake bar is the third one
         }
 
-        private void ClickWeighButton()
-        {
-            _driver.FindElement(By.XPath("//button[@id='weigh']")).Click();
-        }
-
         private string GetWeighingResultText(int resultIndex)
         {
             return _wait.Until(driver => driver.FindElement(By.XPath($"//ol/li[{resultIndex}]"))).Text;
-        }
-
-        private void ResetScale()
-        {
-            IWebElement resetButton = _driver.FindElement(By.XPath("//div/button[@id='reset' and text()='Reset']"));
-            _wait.Until(driver => resetButton.Enabled);
-            resetButton.Click();
-            Console.WriteLine("Reset Button Clicked");
         }
     }
 }
