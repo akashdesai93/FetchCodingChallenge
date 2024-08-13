@@ -9,7 +9,7 @@ The project includes automated tests that interact with a web application to wei
 ## Project Structure
 
 - **StepDefinitions**: Contains the step definition class `FindFakeGoldBarStepDefinitions.cs` which implements the logic to interact with the web application and perform the tests.
-- **Features**: Contains the SpecFlow feature files that describe the test scenarios in Gherkin syntax (not included in this example, but typically located here).
+- **Features**: Contains the SpecFlow feature files that describe the test scenarios in Gherkin syntax.
 - **Program.cs**: If a console application is used, this file would contain the entry point to run the tests directly without opening Visual Studio (if implemented).
 - **README.md**: This document explaining the project and how to run it.
 
