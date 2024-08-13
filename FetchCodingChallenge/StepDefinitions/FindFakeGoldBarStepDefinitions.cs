@@ -70,8 +70,10 @@ namespace FetchCodingChallenge.StepDefinitions
         }
         private int[] WeighAndDetermineGroup(int[] leftGroup, int[] rightGroup)
         {
-            EnterValuesIntoLeftBowl(leftGroup);
-            EnterValuesIntoRightBowl(rightGroup);
+            // Use the combined method to enter values into the left and right bowls
+            EnterValuesIntoBowl(leftGroup, "left");
+            EnterValuesIntoBowl(rightGroup, "right");
+
             _driver.FindElement(By.XPath("//button[@id='weigh']")).Click();
 
             string weighingResultText = GetWeighingResultText(1);
@@ -80,28 +82,27 @@ namespace FetchCodingChallenge.StepDefinitions
                 return rightGroup; // Left side is heavier, so the fake bar is in the right group
             else if (weighingResultText.Contains("<"))
                 return leftGroup; // Right side is heavier, so the fake bar is in the left group
-            else
+            else if (weighingResultText.Contains("="))
                 return new int[] { 6, 7, 8 }; // Both sides are equal, so the fake bar is in the third group
+            else
+                throw new Exception($"Invalid weighing result: {weighingResultText}");
         }
-        private void EnterValuesIntoLeftBowl(int[] bars)
+        private void EnterValuesIntoBowl(int[] bars, string side)
         {
-            for (int i = 0; i < bars.Length; i++)
+            if (bars == null || bars.Length == 0)
             {
-                _driver.FindElement(By.XPath($"//input[@id='left_{i}']")).SendKeys(bars[i].ToString());
+                throw new ArgumentException("Bars array is null or empty");
             }
-        }
 
-        private void EnterValuesIntoRightBowl(int[] bars)
-        {
             for (int i = 0; i < bars.Length; i++)
             {
-                _driver.FindElement(By.XPath($"//input[@id='right_{i}']")).SendKeys(bars[i].ToString());
+                _driver.FindElement(By.XPath($"//input[@id='{side}_{i}']")).SendKeys(bars[i].ToString());
             }
         }
         private int FindFakeBarWithinGroup(int[] group)
         {
-            EnterValuesIntoLeftBowl(new int[] { group[0] });
-            EnterValuesIntoRightBowl(new int[] { group[1] });
+            EnterValuesIntoBowl(new int[] { group[0] }, "left");
+            EnterValuesIntoBowl(new int[] { group[1] }, "right");
             _driver.FindElement(By.XPath("//button[@id='weigh']")).Click();
 
             string weighingResultText = GetWeighingResultText(2);
