@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yu6Deo2U2G3MRZMV+rtDzLOMf36lawcDSHWw1SGJ9MZtlPUg/72Ou8hrTrB3gBun/4pqypuZUsYLEgrW6qHvww==",
+  "dgSpecHash": "t5sXCacK+h0fcQ1rK4msD8ZG//CVct3FkWJ5lCUyc7g/LeRddoKOqa1ioAJ4PJ7sGlHTddV0st4olyHQ7xmyUQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\akash\\Source\\Repos\\FetchCodingChallenge\\FetchCodingChallenge\\FetchCodingChallenge.csproj",
   "expectedPackageFiles": [
@@ -35,7 +35,9 @@
     "C:\\Users\\akash\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\akash\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\akash\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
+    "C:\\Users\\akash\\.nuget\\packages\\selenium.support\\4.23.0\\selenium.support.4.23.0.nupkg.sha512",
     "C:\\Users\\akash\\.nuget\\packages\\selenium.webdriver\\4.23.0\\selenium.webdriver.4.23.0.nupkg.sha512",
+    "C:\\Users\\akash\\.nuget\\packages\\seleniumextras.waithelpers\\1.0.2\\seleniumextras.waithelpers.1.0.2.nupkg.sha512",
     "C:\\Users\\akash\\.nuget\\packages\\specflow\\3.9.40\\specflow.3.9.40.nupkg.sha512",
     "C:\\Users\\akash\\.nuget\\packages\\specflow.internal.json\\1.0.8\\specflow.internal.json.1.0.8.nupkg.sha512",
     "C:\\Users\\akash\\.nuget\\packages\\specflow.nunit\\3.9.40\\specflow.nunit.3.9.40.nupkg.sha512",

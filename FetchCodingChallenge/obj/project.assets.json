@@ -607,6 +607,22 @@
           }
         }
       },
+      "Selenium.Support/4.23.0": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "4.23.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Selenium.WebDriver/4.23.0": {
         "type": "package",
         "dependencies": {
@@ -624,6 +640,18 @@
         },
         "build": {
           "buildTransitive/Selenium.WebDriver.targets": {}
+        }
+      },
+      "SeleniumExtras.WaitHelpers/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Selenium.WebDriver": "4.0.0-beta2"
+        },
+        "compile": {
+          "lib/netstandard2.1/SeleniumExtras.WaitHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/SeleniumExtras.WaitHelpers.dll": {}
         }
       },
       "SpecFlow/3.9.40": {
@@ -2787,6 +2815,20 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
+    "Selenium.Support/4.23.0": {
+      "sha512": "ykT3saViorD54A6Eizw6CnNp8SuuIx4E01QhtEnZVrFvgH6P6mSgpCgfDlCX2RNwbGnrpkeoG5eV1dOGmzP12w==",
+      "type": "package",
+      "path": "selenium.support/4.23.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netstandard2.0/WebDriver.Support.dll",
+        "lib/netstandard2.0/WebDriver.Support.xml",
+        "selenium.support.4.23.0.nupkg.sha512",
+        "selenium.support.nuspec"
+      ]
+    },
     "Selenium.WebDriver/4.23.0": {
       "sha512": "jQxNGGuWeSw/+xeZVv+0TL6pVnKeLsBYlxvADY7iGyq1yjgtUFNxGK01t0Op6+FMVdFLcMysL4Z0VdTvzFn0eA==",
       "type": "package",
@@ -2805,6 +2847,19 @@
         "manager/windows/selenium-manager.exe",
         "selenium.webdriver.4.23.0.nupkg.sha512",
         "selenium.webdriver.nuspec"
+      ]
+    },
+    "SeleniumExtras.WaitHelpers/1.0.2": {
+      "sha512": "de7m30nkZZLkfCncYBdluUpM27AR/Vkk4kiA4HRQbV+fZI3ps4qGIeJCuj8TAMXdMfQik5Rno8xPnFBIod+ebg==",
+      "type": "package",
+      "path": "seleniumextras.waithelpers/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "lib/netstandard2.1/SeleniumExtras.WaitHelpers.dll",
+        "seleniumextras.waithelpers.1.0.2.nupkg.sha512",
+        "seleniumextras.waithelpers.nuspec"
       ]
     },
     "SpecFlow/3.9.40": {
@@ -5709,7 +5764,9 @@
       "FluentAssertions >= 6.2.0",
       "Microsoft.NET.Test.Sdk >= 17.0.0",
       "NUnit3TestAdapter >= 4.1.0",
+      "Selenium.Support >= 4.23.0",
       "Selenium.WebDriver >= 4.23.0",
+      "SeleniumExtras.WaitHelpers >= 1.0.2",
       "SpecFlow.NUnit >= 3.9.40",
       "SpecFlow.Plus.LivingDocPlugin >= 3.9.57",
       "SpecFlow.Tools.MsBuild.Generation >= 3.9.40",
@@ -5772,9 +5829,17 @@
             "target": "Package",
             "version": "[4.1.0, )"
           },
+          "Selenium.Support": {
+            "target": "Package",
+            "version": "[4.23.0, )"
+          },
           "Selenium.WebDriver": {
             "target": "Package",
             "version": "[4.23.0, )"
+          },
+          "SeleniumExtras.WaitHelpers": {
+            "target": "Package",
+            "version": "[1.0.2, )"
           },
           "SpecFlow.NUnit": {
             "target": "Package",
